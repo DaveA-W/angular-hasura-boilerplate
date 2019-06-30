@@ -18,32 +18,34 @@ import { ErrorHandlerInterceptor } from './error-handler.interceptor';
 import { CacheInterceptor } from './cache.interceptor';
 import { ApiPrefixInterceptor } from './api-prefix.interceptor';
 
+// Interface methods below are currently unused by HttpClient consumers, so is commented out for Typescript 3.4
+//
 // HttpClient is declared in a re-exported module, so we have to extend the original module to make it work properly
 // (see https://github.com/Microsoft/TypeScript/issues/13897)
-declare module '@angular/common/http/src/client' {
-  // Augment HttpClient with the added configuration methods from HttpService, to allow in-place replacement of
-  // HttpClient with HttpService using dependency injection
-  export interface HttpClient {
-    /**
-     * Enables caching for this request.
-     * @param {boolean} forceUpdate Forces request to be made and updates cache entry.
-     * @return {HttpClient} The new instance.
-     */
-    cache(forceUpdate?: boolean): HttpClient;
-
-    /**
-     * Skips default error handler for this request.
-     * @return {HttpClient} The new instance.
-     */
-    skipErrorHandler(): HttpClient;
-
-    /**
-     * Do not use API prefix for this request.
-     * @return {HttpClient} The new instance.
-     */
-    disableApiPrefix(): HttpClient;
-  }
-}
+//  declare module '@angular/common/http/src/client' {
+//    // Augment HttpClient with the added configuration methods from HttpService, to allow in-place replacement of
+//    // HttpClient with HttpService using dependency injection
+//    export interface HttpClient {
+//      /**
+//       * Enables caching for this request.
+//       * @param {boolean} forceUpdate Forces request to be made and updates cache entry.
+//       * @return {HttpClient} The new instance.
+//       */
+//      cache(forceUpdate?: boolean): HttpClient;
+//
+//      /**
+//       * Skips default error handler for this request.
+//       * @return {HttpClient} The new instance.
+//       */
+//      skipErrorHandler(): HttpClient;
+//
+//      /**
+//       * Do not use API prefix for this request.
+//       * @return {HttpClient} The new instance.
+//       */
+//      disableApiPrefix(): HttpClient;
+//    }
+//  }
 
 // From @angular/common/http/src/interceptor: allows to chain interceptors
 class HttpInterceptorHandler implements HttpHandler {

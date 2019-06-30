@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MediaChange, ObservableMedia } from '@angular/flex-layout';
+import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { MatSidenav } from '@angular/material/sidenav';
 import { filter } from 'rxjs/operators';
 
@@ -12,7 +12,7 @@ export class ShellComponent implements OnInit {
   @ViewChild('sidenav', { static: true })
   sidenav: MatSidenav;
 
-  constructor(private media: ObservableMedia) {}
+  constructor(private media: MediaObserver) {}
 
   ngOnInit() {
     // Automatically close side menu on screens > sm breakpoint
@@ -20,8 +20,11 @@ export class ShellComponent implements OnInit {
       .asObservable()
       .pipe(
         filter(
-          (change: MediaChange) =>
-            change.mqAlias !== 'xs' && change.mqAlias !== 'sm'
+          (changes: MediaChange[]) =>
+            changes &&
+            changes.length &&
+            changes[changes.length - 1].mqAlias !== 'xs' &&
+            changes[changes.length - 1].mqAlias !== 'sm'
         )
       )
       .subscribe(() => this.sidenav.close());
