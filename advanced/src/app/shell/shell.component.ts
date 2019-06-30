@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MediaChange, ObservableMedia } from '@angular/flex-layout';
-import { MatSidenav } from '@angular/material';
+import { MatSidenav } from '@angular/material/sidenav';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -9,7 +9,7 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./shell.component.scss']
 })
 export class ShellComponent implements OnInit {
-  @ViewChild('sidenav')
+  @ViewChild('sidenav', { static: true })
   sidenav: MatSidenav;
 
   constructor(private media: ObservableMedia) {}
